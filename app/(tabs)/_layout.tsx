@@ -1,35 +1,42 @@
+import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
+import Feather from '@expo/vector-icons/Feather';
 import { Tabs } from 'expo-router';
-import React from 'react';
-
-import { TabBarIcon } from '@/components/navigation/TabBarIcon';
-import { Colors } from '@/constants/Colors';
-import { useColorScheme } from '@/hooks/useColorScheme';
+import MyTabBar from '../components/TabBar';
 
 export default function TabLayout() {
-  const colorScheme = useColorScheme();
-
   return (
     <Tabs
-      screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
+        screenOptions={{
         headerShown: false,
+        tabBarActiveTintColor: '#e50020'
       }}>
       <Tabs.Screen
         name="index"
         options={{
-          title: 'Home',
-          tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon name={focused ? 'home' : 'home-outline'} color={color} />
-          ),
+            title: 'Home',
+            tabBarIcon: ({ color }) => <Feather name="home" size={28} color={color} />,
         }}
       />
       <Tabs.Screen
-        name="explore"
+        name="stock"
         options={{
-          title: 'Explore',
-          tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon name={focused ? 'code-slash' : 'code-slash-outline'} color={color} />
-          ),
+            title: 'Stock',
+            tabBarIcon: ({ color }) => <Feather name="box" size={28} color={color} />,
+        }}
+      />
+      <Tabs.Screen
+        name="scanner"
+        options={{
+            title: 'Scanner',
+            tabBarIcon: ({ color }) => <MaterialCommunityIcons name="barcode-scan" size={28} color={color} />,
+        }}
+      />
+      <Tabs.Screen
+        name="ProductDetails"
+        options={{
+            title: 'productdetails',
+            tabBarStyle: { display: 'none' },
+            tabBarButton: (props) => null,
         }}
       />
     </Tabs>
